@@ -1,5 +1,6 @@
 package com.andriylazaryev;
 
+import com.andriylazaryev.config.GameConfig;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.andriylazaryev.ObstacleAvoidGame;
@@ -8,8 +9,9 @@ import com.andriylazaryev.ObstacleAvoidGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-		config.setForegroundFPS(60);
-		config.setTitle("obstacle-avoid");
+
+		config.setWindowSizeLimits((int)GameConfig.WIDTH, (int)GameConfig.HEIGHT,(int)GameConfig.WIDTH, (int)GameConfig.HEIGHT);
+
 		new Lwjgl3Application(new ObstacleAvoidGame(), config);
 	}
 }
