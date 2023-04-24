@@ -1,5 +1,7 @@
 package com.andriylazaryev.entity;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
 
@@ -7,6 +9,7 @@ public class Player {
 
 	private static final float BOUNDS_RADIUS = 0.4f; // world units
 	private static final float SIZE = 2 * BOUNDS_RADIUS;
+	private static final float MAX_X_SPEED = 0.25f;
 
 	private float x;
 	private float y;
@@ -29,5 +32,21 @@ public class Player {
 
 	private void updateBounds(){
 		bounds.setPosition(x,y);
+	}
+
+	public void update(){
+		float xSpeed = 0;
+		if(Gdx.input.isKeyPressed(Input.Keys.D))xSpeed=MAX_X_SPEED;
+		if(Gdx.input.isKeyPressed(Input.Keys.A))xSpeed=-MAX_X_SPEED;
+		x += xSpeed;
+		updateBounds();
+	}
+
+	public float getX() {
+		return x;
+	}
+
+	public float getY() {
+		return y;
 	}
 }

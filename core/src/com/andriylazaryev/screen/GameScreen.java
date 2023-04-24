@@ -9,11 +9,14 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class GameScreen implements Screen {
+
+	private static final Logger log = new Logger(GameScreen.class.getName(), Logger.DEBUG);
 
 	private OrthographicCamera camera;
 	private Viewport viewport;
@@ -40,9 +43,22 @@ public class GameScreen implements Screen {
 	}
 	@Override
 	public void render (float delta) {
+
+		// update world
+		update(delta);
+
 		GdxUtils.clearScreen();
 
+		// debug graphics
 		renderDebug();
+	}
+
+	private void update(float delta){
+		updatePlayer();
+	}
+
+	private void updatePlayer(){
+		player.update();
 	}
 
 	private void renderDebug(){
