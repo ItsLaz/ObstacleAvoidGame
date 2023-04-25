@@ -59,7 +59,6 @@ public class GameScreen implements Screen {
 		//create player
 		player = new Player();
 
-
 		//calculate position
 		float startPlayerX = GameConfig.WORLD_CENTER_X;
 		float startPlayerY = 1;
@@ -92,6 +91,9 @@ public class GameScreen implements Screen {
 
 
 	private void update(float delta){
+
+		if(isGameOver())return;
+
 		updatePlayer();
 		updateObstacles(delta);
 		updateScore(delta);
@@ -99,9 +101,13 @@ public class GameScreen implements Screen {
 		if(isPlayerCollidingWithObstacle())lives--;
 	}
 
+	private boolean isGameOver(){
+		return lives <= 0;
+	}
+
 	private boolean isPlayerCollidingWithObstacle() {
 		for(Obstacle obstacle : obstacles){
-			if(obstacle.isPlayerColliding(player))return true;
+			if(obstacle.isNotHit() &&  obstacle.isPlayerColliding(player))return true;
 		}
 		return false;
 	}

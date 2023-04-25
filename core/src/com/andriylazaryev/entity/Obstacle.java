@@ -8,6 +8,8 @@ public class Obstacle extends GameObjectBase {
 	private static final float BOUNDS_RADIUS = 0.2f; // world units
 	private static final float SIZE = 2 * BOUNDS_RADIUS;
 
+	private boolean hit;
+
 	public Obstacle(){
 		super(BOUNDS_RADIUS);
 	}
@@ -24,6 +26,12 @@ public class Obstacle extends GameObjectBase {
 	public boolean isPlayerColliding(Player player) {
 		Circle playerBounds = player.getBounds();
 		// check if player bounds overlaps obstacle bounds
-		return Intersector.overlaps(playerBounds,getBounds());
+		boolean overlaps = Intersector.overlaps(playerBounds,getBounds());
+		hit=overlaps;
+		return overlaps;
+	}
+
+	public boolean isNotHit(){
+		return !hit;
 	}
 }
