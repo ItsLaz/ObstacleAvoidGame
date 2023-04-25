@@ -4,14 +4,14 @@
   "moveSpeed": "20",
   "zoomSpeed": "2",
 
-  "upKey": "Up",
-  "leftKey": "Left",
-  "downKey": "Down",
-  "rightKey": "Right",
+  "upKey": "I",
+  "leftKey": "J",
+  "downKey": "K",
+  "rightKey": "L",
 
   "zoomInKey": ",",
   "zoomOutKey": ".",
 
-  "resetKey": "Delete",
+  "resetKey": "/",
   "logKey": "Enter"
 }

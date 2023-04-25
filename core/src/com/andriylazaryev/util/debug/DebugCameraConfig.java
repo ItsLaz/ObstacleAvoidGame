@@ -159,5 +159,24 @@ public class DebugCameraConfig {
 		return Input.Keys.valueOf(keyString);
 	}
 
+	@Override
+	public String toString(){
+		String LS = System.getProperty("line.separator");
+		return "DebugCameraConfig { " + LS +
+				"maxZoomIn = " + maxZoomIn + LS +
+				"maxZoomOut = " + maxZoomOut + LS +
+				"moveSpeed = " + moveSpeed + LS +
+				"zoomSpeed = " + zoomSpeed + LS +
+				"leftKey = " + Input.Keys.toString(leftKey) + LS +
+				"rightKey = " + Input.Keys.toString(rightKey) + LS +
+				"downKey = " + Input.Keys.toString(downKey) + LS +
+				"upKey = " + Input.Keys.toString(upKey) + LS +
+				"zoomInKey = " + Input.Keys.toString(zoomInKey) + LS +
+				"zoomOutKey = " + Input.Keys.toString(zoomOutKey) + LS +
+				"resetKey = " + Input.Keys.toString(resetKey) + LS +
+				"logKey = " + Input.Keys.toString(logKey) + LS +
+				" }";
+	}
+
 
 }
