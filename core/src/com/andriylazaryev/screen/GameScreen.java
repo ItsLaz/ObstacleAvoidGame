@@ -8,13 +8,10 @@ import com.andriylazaryev.util.ViewportUtils;
 import com.andriylazaryev.util.debug.DebugCameraController;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Logger;
-import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -27,7 +24,7 @@ public class GameScreen implements Screen {
 	private ShapeRenderer renderer;
 
 	private Player player;
-	private Array<Obstacle> obstacles = new Array<>();
+	private final Array<Obstacle> obstacles = new Array<>();
 	private float obstacleTimer;
 	private DebugCameraController debugCameraController;
 
@@ -108,6 +105,7 @@ public class GameScreen implements Screen {
 			obstacles.add(obstacle);
 			obstacleTimer = 0f;
 		}
+		log.debug("Obstacles count = " + obstacles.size);
 	}
 
 	private void renderDebug(){
