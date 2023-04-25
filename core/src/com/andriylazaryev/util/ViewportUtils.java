@@ -32,7 +32,7 @@ public class ViewportUtils {
 		renderer.setProjectionMatrix(viewport.getCamera().combined);
 		renderer.begin(ShapeRenderer.ShapeType.Line);
 
-		renderer.setColor(Color.WHITE);
+		renderer.setColor(Color.GRAY);
 		//draw lines (vertical & horizontal)
 		for(int x = -doubleWorldWidth; x < doubleWorldWidth; x+=cellSize){
 			renderer.line(x, -doubleWorldHeight, x, doubleWorldHeight);

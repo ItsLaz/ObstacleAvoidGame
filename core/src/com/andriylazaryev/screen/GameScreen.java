@@ -38,7 +38,9 @@ public class GameScreen implements Screen {
 	private Player player;
 	private final Array<Obstacle> obstacles = new Array<>();
 	private float obstacleTimer;
+	private float scoreTimer;
 	private int lives = GameConfig.LIVES_START;
+	private int score;
 
 	private DebugCameraController debugCameraController;
 
@@ -50,7 +52,7 @@ public class GameScreen implements Screen {
 		
 		//hud
 		hudCamera = new OrthographicCamera();
-		hudViewport = new FitViewport(GameConfig.HUD_WIDTH, GameConfig.HUG_HEIGHT, hudCamera);
+		hudViewport = new FitViewport(GameConfig.HUD_WIDTH, GameConfig.HUD_HEIGHT, hudCamera);
 		batch = new SpriteBatch();
 		font = new BitmapFont(Gdx.files.internal(AssetPaths.UI_FONT));
 
@@ -92,6 +94,7 @@ public class GameScreen implements Screen {
 	private void update(float delta){
 		updatePlayer();
 		updateObstacles(delta);
+		updateScore(delta);
 
 		if(isPlayerCollidingWithObstacle())lives--;
 	}
@@ -146,10 +149,15 @@ public class GameScreen implements Screen {
 
 		String livesText = "Lives: " + lives;
 		layout.setText(font,livesText);
-
 		font.draw(
 				batch,livesText, 20,
-				GameConfig.HUD_WIDTH - layout.height);
+				GameConfig.HUD_HEIGHT - layout.height);
+
+		String scoreText = "Score: " + score;
+		layout.setText(font, scoreText);
+		font.draw(batch,scoreText,
+				GameConfig.HUD_WIDTH - layout.width - 20,
+				GameConfig.HUD_HEIGHT - layout.height);
 
 		batch.end();
 	}
@@ -174,6 +182,14 @@ public class GameScreen implements Screen {
 			obstacle.drawDebug(renderer);
 		}
 
+	}
+
+	private void updateScore(float delta){
+		scoreTimer += delta;
+		if(scoreTimer >= GameConfig.SCORE_MAX_TIME){
+			score += 1;
+			scoreTimer = 0.0f;
+		}
 	}
 
 	@Override
