@@ -4,6 +4,7 @@ import com.andriylazaryev.config.GameConfig;
 import com.andriylazaryev.entity.Player;
 import com.andriylazaryev.util.GdxUtils;
 import com.andriylazaryev.util.ViewportUtils;
+import com.andriylazaryev.util.debug.DebugCameraController;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -23,6 +24,7 @@ public class GameScreen implements Screen {
 	private ShapeRenderer renderer;
 
 	private Player player;
+	private DebugCameraController debugCameraController;
 
 	@Override
 	public void show () {
@@ -33,6 +35,7 @@ public class GameScreen implements Screen {
 		//create player
 		player = new Player();
 
+
 		//calculate position
 		float startPlayerX = GameConfig.WORLD_CENTER_X;
 		float startPlayerY = 1;
@@ -40,9 +43,16 @@ public class GameScreen implements Screen {
 		//position player
 		player.setPosition(startPlayerX,startPlayerY);
 
+		// create debug camera controller
+		debugCameraController = new DebugCameraController();
+		debugCameraController.setStartPosition(GameConfig.WORLD_CENTER_X,GameConfig.WORLD_CENTER_Y);
+
 	}
 	@Override
 	public void render (float delta) {
+
+		debugCameraController.handleDebugInput(delta);
+		debugCameraController.applyTo(camera);
 
 		// update world
 		update(delta);
