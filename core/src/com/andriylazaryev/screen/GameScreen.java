@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -69,6 +70,15 @@ public class GameScreen implements Screen {
 
 	private void updatePlayer(){
 		player.update();
+		blockPlayerFromLeavingTheWorld();
+	}
+
+	private void blockPlayerFromLeavingTheWorld(){
+		float playerX = MathUtils.clamp(
+				player.getX(),
+				player.getWidth()/2f,
+				GameConfig.WORLD_WIDTH-player.getWidth()/2f);
+		player.setPosition(playerX,player.getY());
 	}
 
 	private void renderDebug(){
